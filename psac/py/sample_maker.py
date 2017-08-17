@@ -24,18 +24,18 @@ def make_front_and_back_examples(in_dir, out_dir):
         np.save(os.path.join(out_dir, fn + '_back.npy'), np.rot90(data[:,:,31]))
 
 
-# In[9]:
+# In[21]:
 
 
-def make_region_examples(in_idr, out_dir, x1, x2, y1, y2):
+def make_region_examples(in_dir, out_dir, x1, x2, y1, y2):
     """生成区域样本，输入为make_front_and_back_examples输出的正面图和背面图
     """
-    for f in os.listdir(in_path):
-        data = np.load(os.path.join(in_path, f))
+    for f in os.listdir(in_dir):
+        data = np.load(os.path.join(in_dir, f))
         if 'back' in f:
             # 背面图像需要做水平翻转，统一坐标系
             data = np.fliplr(data)
-        np.save(os.path.join(out_dir, fi), data[x1:x2,y1:y2])
+        np.save(os.path.join(out_dir, f), data[x1:x2,y1:y2])
 
 
 # In[15]:
